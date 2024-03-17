@@ -3,13 +3,14 @@
   --text: #3c3c3cee;
   --yellow: #fad44a;
   --red: #eb6666;
-  --green: #3e9140;
+  --green: #6fae89;
+  --blue: #777cf3;
 }
 
 @font-face {
   font-family: "PP Editorial";
   src: url("fonts/PPEditorialOld-UltralightItalic.otf");
-  font-weight: lighter;
+  font-weight: 300;
   font-style: italic;
 }
 @font-face {
@@ -22,6 +23,30 @@
   font-family: "PP Editorial";
   src: url("fonts/PPEditorialOld-Italic.otf");
   font-weight: normal;
+  font-style: italic;
+}
+
+.space-mono-regular {
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.space-mono-bold {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.space-mono-regular-italic {
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.space-mono-bold-italic {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
   font-style: italic;
 }
 
@@ -55,7 +80,8 @@ a {
 
 a:hover {
   color: #6a6e32;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
   cursor: pointer;
 }
 
@@ -84,9 +110,12 @@ text {
   fill: #000000;
 }
 
-.temperature {
+.temperature-conditions {
+  padding-top: 100px;
   font-family: "PP Editorial", Georgia, "Times New Roman", Times, serif;
-  font-size: 80px;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 75px;
   display: flex;
   flex-direction: column;
   /* place-items: center; */
@@ -96,26 +125,78 @@ text {
   position: absolute;
 }
 
+.temperature {
+  font-family: "PP Editorial", Georgia, "Times New Roman", Times, serif;
+  font-size: 80px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 300;
+  font-style: italic;
+  /* place-items: center; */
+  place-items: center start;
+  align-content: start;
+  align-items: first baseline;
+  position: absolute;
+}
+
 .text-container {
   width: 500px;
-  height: 100px;
+  height: 10px;
 }
-/* body::before,
-body::after {
-  position: absolute;
-  left: 0;
-  top: 0;
-  content: "";
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  opacity: 40%;
-} */
 
-/* body::before {
-  background-color: #e0e0e0;
-  filter: url(#noiseFilter);
-} */
+.search {
+  position: absolute;
+  top: 400px;
+  display: flex;
+  /* padding-left: 25px; */
+  justify-content: space-around;
+  /* align-items: center; */
+  place-items: center;
+  margin: 0 auto;
+  width: 300px;
+  height: 80px;
+  background-color: white;
+  border-radius: 25px;
+  border: none;
+  box-shadow: inset gray 0px 0px 5px -1px;
+}
+
+.search-input {
+  /* font-family: "Satoshi", sans-serif; */
+  font-family: "Space Mono", monospace;
+  color: black;
+  font-size: 50px;
+  width: 235px;
+  height: 50px;
+  border: none;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+}
+
+.search-input::placeholder {
+  color: black;
+}
+
+.search-input:focus {
+  border: 0;
+  outline: none;
+}
+
+.search-btn {
+  font-family: "Space Mono", monospace;
+
+  transform: rotate(-90deg);
+  padding: 7px 10px;
+  position: absolute;
+  top: 23px;
+  right: -10px;
+  border-radius: 15px;
+  border: none;
+  background-color: white;
+  box-shadow: inset gray 0px 0px 5px -1px;
+  filter: drop-shadow(0 0 0.75rem gray);
+}
 
 .blob-container {
   display: flex;
@@ -135,7 +216,7 @@ body::after {
 }
 
 .yellow {
-  background-color: var(--yellow);
+  background-color: var(--red);
   position: absolute;
   top: 200px;
   left: 50px;
@@ -146,8 +227,8 @@ body::after {
   animation: yellow 8s infinite ease;
 }
 
-.green {
-  background-color: var(--green);
+.blue {
+  background-color: var(--blue);
   position: absolute;
   top: 80px;
   right: -20px;
@@ -156,18 +237,52 @@ body::after {
   z-index: -3;
 
   /* animation: name duration timing-function delay iteration-count direction fill-mode; */
-  animation: green 15s infinite ease;
+  animation: blue 15s infinite ease;
 }
 
 .red {
-  background-color: var(--red);
+  background-color: var(--yellow);
   position: absolute;
   right: 0;
   top: 300px;
   height: 250px;
   width: 250px;
   /* animation: name duration timing-function delay iteration-count direction fill-mode; */
-  animation: red 10s infinite ease;
+  animation: red 12s infinite ease;
+}
+
+.green {
+  background-color: var(--green);
+  position: absolute;
+  right: 0;
+  top: 300px;
+  height: 300px;
+  width: 300px;
+
+  animation: green 10s infinite linear;
+}
+
+@keyframes green {
+  0% {
+    top: 300px;
+    left: 100px;
+    transform: scale(1.3);
+  }
+  30% {
+    top: 300px;
+    left: -100px;
+    transform: scale(1.2);
+  }
+  65% {
+    top: 100px;
+    left: 200px;
+    transform: scale(1.4);
+  }
+  100% {
+    top: 300px;
+    left: 100px;
+    transform: scale(1.3);
+  }
 }
 
 @keyframes yellow {
@@ -193,7 +308,7 @@ body::after {
   }
 }
 
-@keyframes green {
+@keyframes blue {
   0% {
     top: 0px;
     left: 100px;
@@ -229,7 +344,7 @@ body::after {
   }
   65% {
     top: 250px;
-    left: 100px;
+    left: 300px;
     transform: scale(1.4);
   }
   100% {
