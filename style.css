@@ -153,12 +153,12 @@ text {
   /* align-items: center; */
   place-items: center;
   margin: 0 auto;
-  width: 300px;
-  height: 80px;
+  width: 250px;
+  height: 100px;
   background-color: white;
   border-radius: 25px;
   border: none;
-  box-shadow: inset gray 0px 0px 5px -1px;
+  box-shadow: inset gray 0px 1px 10px 1px;
 }
 
 .search-input {
@@ -166,11 +166,11 @@ text {
   font-family: "Space Mono", monospace;
   color: black;
   font-size: 50px;
-  width: 235px;
+  width: 200px;
   height: 50px;
   border: none;
   position: absolute;
-  top: 15px;
+  top: 20px;
   left: 20px;
 }
 
@@ -185,11 +185,11 @@ text {
 
 .search-btn {
   font-family: "Space Mono", monospace;
-
+  letter-spacing: 1px;
   transform: rotate(-90deg);
   padding: 7px 10px;
   position: absolute;
-  top: 23px;
+  top: 30px;
   right: -10px;
   border-radius: 15px;
   border: none;
