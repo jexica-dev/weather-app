@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@1,700,500,300,501,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <!-- navbar -->
+    <div class="nav">
+      <h2 class="title">The Weather App</h2>
+      <div class="menu">
+        <p><a href="index.html">temperature</a></p>
+        <p><a href="conditions.html">conditions</a></p>
+      </div>
+    </div>
+    <!-- blobs -->
+    <div class="blob-container">
+      <div class="green blob"></div>
+      <div class="yellow blob"></div>
+      <div class="red blob"></div>
+    </div>
+
+    <!-- conditions -->
+    <div class="temperature">
+      <!-- temperature -->
+      <div class="text-container"></div>
+
+      <svg viewBox="0 0 425 300">
+        <path
+          id="curve"
+          d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97"
+        />
+        <text x="25">
+          <textPath xlink:href="#curve">80 degrees</textPath>
+        </text>
+      </svg>
+    </div>
+  </body>
+</html>
