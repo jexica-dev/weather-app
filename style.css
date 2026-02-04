@@ -8,69 +8,93 @@
 }
 
 @font-face {
-  font-family: "PP Editorial";
-  src: url("fonts/PPEditorialOld-UltralightItalic.otf");
+  font-family: 'PP Editorial';
+  src: url('fonts/PPEditorialOld-UltralightItalic.otf');
   font-weight: 300;
   font-style: italic;
 }
 @font-face {
-  font-family: "PP Editorial";
-  src: url("fonts/PPEditorialOld-Regular.otf");
+  font-family: 'PP Editorial';
+  src: url('fonts/PPEditorialOld-Regular.otf');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "PP Editorial";
-  src: url("fonts/PPEditorialOld-Italic.otf");
+  font-family: 'PP Editorial';
+  src: url('fonts/PPEditorialOld-Italic.otf');
   font-weight: normal;
   font-style: italic;
 }
 
 .space-mono-regular {
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   font-weight: 400;
   font-style: normal;
 }
 
 .space-mono-bold {
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   font-weight: 700;
   font-style: normal;
 }
 
 .space-mono-regular-italic {
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   font-weight: 400;
   font-style: italic;
 }
 
 .space-mono-bold-italic {
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   font-weight: 700;
   font-style: italic;
 }
 
+/* MOBILE FIRST STYLES - Base styles for mobile devices */
 body {
   height: 100vh;
   margin: 0;
+  padding: 0 1.5em;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 3em;
-
+  gap: 2em;
   background-color: var(--bg);
-  /* font-family: "Satoshi", sans-serif; */
-  font-family: "PP Editorial", Georgia, "Times New Roman", Times, serif;
-  margin: 0 10em;
+  font-family: 'PP Editorial', Georgia, 'Times New Roman', Times, serif;
+  overflow-x: hidden;
+  position: relative;
 }
 
 h2 {
-  font-size: 32px;
+  font-size: 24px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.9;
+}
+
+.title-the {
+  font-size: 20px;
+  /* font-style: italic; */
+  font-weight: normal;
+}
+
+.title-weather {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.title-app {
+  font-size: 20px;
+  font-weight: normal;
 }
 
 p {
-  font-size: 20px;
+  font-size: 18px;
+  margin: 0;
 }
 
 a {
@@ -87,19 +111,22 @@ a:hover {
 
 .nav {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   width: 100%;
+  gap: 1em;
+  padding-top: 1em;
 }
 
 .menu {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
-  gap: 3em;
+  gap: 2em;
   font-style: italic;
+  z-index: 100;
 }
 
 path {
@@ -110,51 +137,77 @@ text {
   fill: #000000;
 }
 
-.temperature-conditions {
-  padding-top: 100px;
-  font-family: "PP Editorial", Georgia, "Times New Roman", Times, serif;
+.temperature-conditions,
+.temperature {
+  padding-top: 60px;
+  font-family: 'PP Editorial', Georgia, 'Times New Roman', Times, serif;
   font-weight: 300;
   font-style: italic;
-  font-size: 75px;
+  font-size: 50px;
   display: flex;
   flex-direction: column;
-  /* place-items: center; */
-  place-items: center start;
-  align-content: start;
-  align-items: first baseline;
+  place-items: center;
+  align-items: center;
   position: absolute;
+  width: 100%;
 }
 
-.temperature {
-  font-family: "PP Editorial", Georgia, "Times New Roman", Times, serif;
-  font-size: 80px;
-  display: flex;
-  flex-direction: column;
-  font-weight: 300;
-  font-style: italic;
-  /* place-items: center; */
-  place-items: center start;
-  align-content: start;
-  align-items: first baseline;
-  position: absolute;
+.temperature-conditions svg,
+.temperature svg {
+  width: 90%;
+  max-width: 350px;
+}
+
+/* Make default text bold and larger */
+#temp-display,
+#conditions-display {
+  /* font-weight: bold; */
+  font-size: 60px;
+}
+
+.location-display {
+  font-family: 'Space Mono', monospace;
+  font-size: 16px;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: normal;
+  font-style: normal;
+  display: none;
+}
+
+.unit-toggle-btn {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.unit-toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .text-container {
-  width: 500px;
+  width: 100%;
   height: 10px;
 }
 
 .search {
   position: absolute;
   top: 400px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  /* padding-left: 25px; */
   justify-content: space-around;
-  /* align-items: center; */
   place-items: center;
   margin: 0 auto;
-  width: 250px;
-  height: 100px;
+  width: 85%;
+  max-width: 320px;
+  height: 80px;
   background-color: white;
   border-radius: 25px;
   border: none;
@@ -162,16 +215,15 @@ text {
 }
 
 .search-input {
-  /* font-family: "Satoshi", sans-serif; */
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   color: black;
-  font-size: 50px;
-  width: 200px;
+  font-size: 32px;
+  width: calc(100% - 80px);
   height: 50px;
   border: none;
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 15px;
+  left: 15px;
 }
 
 .search-input::placeholder {
@@ -184,18 +236,24 @@ text {
 }
 
 .search-btn {
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   letter-spacing: 1px;
   transform: rotate(-90deg);
-  padding: 7px 10px;
+  padding: 6px 8px;
   position: absolute;
-  top: 30px;
-  right: -10px;
+  top: 24px;
+  right: 5px;
   border-radius: 15px;
   border: none;
   background-color: white;
   box-shadow: inset gray 0px 0px 5px -1px;
-  filter: drop-shadow(0 0 0.75rem gray);
+  filter: drop-shadow(0 0 0.75rem rgb(243, 239, 239));
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.search-btn:hover {
+  background-color: rgb(239, 239, 239);
 }
 
 .blob-container {
@@ -204,10 +262,13 @@ text {
   justify-content: center;
   align-items: center;
   z-index: -2;
-  height: 1000px;
-  width: 500px;
-  position: relative;
-  right: 5em;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
 }
 
 .blob {
@@ -218,151 +279,454 @@ text {
 .yellow {
   background-color: var(--red);
   position: absolute;
-  top: 200px;
-  left: 50px;
-  height: 300px;
-  width: 300px;
+  top: 180px;
+  left: 30px;
+  height: 200px;
+  width: 200px;
   z-index: -2;
-  /* animation: name duration timing-function delay iteration-count direction fill-mode; */
-  animation: yellow 8s infinite ease;
+  animation: yellow-mobile 8s infinite ease;
 }
 
 .blue {
   background-color: var(--blue);
   position: absolute;
-  top: 80px;
-  right: -20px;
-  height: 250px;
-  width: 250px;
+  top: 50px;
+  right: 20px;
+  height: 180px;
+  width: 180px;
   z-index: -3;
-
-  /* animation: name duration timing-function delay iteration-count direction fill-mode; */
-  animation: blue 15s infinite ease;
+  animation: blue-mobile 15s infinite ease;
 }
 
 .red {
   background-color: var(--yellow);
   position: absolute;
-  right: 0;
-  top: 300px;
-  height: 250px;
-  width: 250px;
-  /* animation: name duration timing-function delay iteration-count direction fill-mode; */
-  animation: red 12s infinite ease;
+  right: 30px;
+  top: 250px;
+  height: 180px;
+  width: 180px;
+  animation: red-mobile 12s infinite ease;
 }
 
 .green {
   background-color: var(--green);
   position: absolute;
-  right: 0;
-  top: 300px;
-  height: 300px;
-  width: 300px;
-
-  animation: green 10s infinite linear;
+  left: 50px;
+  top: 280px;
+  height: 200px;
+  width: 200px;
+  animation: green-mobile 10s infinite linear;
 }
 
-@keyframes green {
+/* This handles the fading of the "temperature" curved text */
+.temp-label-svg {
+  transition: opacity 0.5s ease;
+}
+
+.temp-label-svg.fade-out {
+  opacity: 0.15; /* Makes the curve faint when weather shows */
+}
+
+/* Positions the big number/conditions text */
+.weather-value {
+  font-family: 'PP Editorial', serif;
+  font-size: 100px;
+  margin-top: -80px; /* Adjust this to move the number up/down */
+  z-index: 10;
+  text-align: center;
+}
+
+/* Smaller font specifically for the conditions sentence */
+.conditions-text {
+  font-size: 28px;
+  padding: 0 20px;
+  line-height: 1.2;
+}
+
+/* Mobile animations */
+@keyframes green-mobile {
   0% {
-    top: 300px;
-    left: 100px;
-    transform: scale(1.3);
+    top: 280px;
+    left: 50px;
+    transform: scale(1.1);
   }
   30% {
-    top: 300px;
-    left: -100px;
+    top: 280px;
+    left: -30px;
+    transform: scale(1);
+  }
+  65% {
+    top: 180px;
+    left: 120px;
+    transform: scale(1.2);
+  }
+  100% {
+    top: 280px;
+    left: 50px;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes yellow-mobile {
+  0% {
+    top: 180px;
+    left: 30px;
+    transform: scale(1.1);
+  }
+  30% {
+    top: 260px;
+    left: 100px;
+    transform: scale(1);
+  }
+  65% {
+    top: 120px;
+    left: 180px;
+    transform: scale(1.2);
+  }
+  100% {
+    top: 180px;
+    left: 30px;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes blue-mobile {
+  0% {
+    top: 50px;
+    right: 20px;
+    transform: scale(0.9);
+  }
+  30% {
+    top: 10px;
+    right: 80px;
+    transform: scale(1.1);
+  }
+  65% {
+    top: 160px;
+    right: 150px;
+    transform: scale(1.2);
+  }
+  100% {
+    top: 50px;
+    right: 20px;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes red-mobile {
+  0% {
+    top: 250px;
+    right: 30px;
+    transform: scale(0.9);
+  }
+  30% {
+    top: 180px;
+    right: 100px;
     transform: scale(1.2);
   }
   65% {
-    top: 100px;
-    left: 200px;
-    transform: scale(1.4);
-  }
-  100% {
-    top: 300px;
-    left: 100px;
-    transform: scale(1.3);
-  }
-}
-
-@keyframes yellow {
-  0% {
-    top: 200px;
-    left: 50px;
-    transform: scale(1.3);
-  }
-  30% {
-    top: 300px;
-    left: 150px;
+    top: 250px;
+    right: 180px;
     transform: scale(1.2);
   }
-  65% {
-    top: 100px;
-    left: 250px;
-    transform: scale(1.4);
-  }
   100% {
-    top: 200px;
-    left: 50px;
-    transform: scale(1.3);
+    top: 250px;
+    right: 30px;
+    transform: scale(0.9);
   }
 }
 
-@keyframes blue {
-  0% {
-    top: 0px;
-    left: 100px;
-    transform: scale(1);
-  }
-  30% {
-    top: -50px;
-    left: 250px;
-    transform: scale(1.3);
-  }
-  65% {
-    top: 200px;
-    left: 350px;
-    transform: scale(1.4);
-  }
-  100% {
-    top: 0px;
-    left: 100px;
-    transform: scale(1);
-  }
-}
-
-@keyframes red {
-  0% {
-    top: 250px;
-    left: 0px;
-    transform: scale(1);
-  }
-  30% {
-    top: 150px;
-    left: 150px;
-    transform: scale(1.4);
-  }
-  65% {
-    top: 250px;
-    left: 300px;
-    transform: scale(1.4);
-  }
-  100% {
-    top: 250px;
-    left: 0px;
-    transform: scale(1);
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .text-container {
-    height: 200px;
-    width: 100vw;
-    /* height: 100px; */
-  }
+/* TABLET STYLES - Medium screens */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
   body {
-    overflow-x: hidden;
-    height: 100%;
+    padding: 0 5em;
+  }
+
+  .title-the {
+    font-size: 22px;
+  }
+
+  .title-weather {
+    font-size: 30px;
+  }
+
+  .title-app {
+    font-size: 22px;
+  }
+
+  .menu {
+    gap: 2.5em;
+  }
+
+  .temperature,
+  .temperature-conditions {
+    font-size: 70px;
+    padding-top: 80px;
+  }
+
+  .temperature svg,
+  .temperature-conditions svg {
+    max-width: 400px;
+  }
+
+  .search {
+    top: 380px;
+    width: 280px;
+    height: 90px;
+  }
+
+  .search-input {
+    font-size: 42px;
+  }
+
+  .search-btn {
+    font-size: 11px;
+    top: 28px;
+  }
+
+  .blob-container {
+    right: 3em;
+  }
+}
+
+/* DESKTOP STYLES - Large screens */
+@media only screen and (min-width: 1025px) {
+  body {
+    padding: 0 10em;
+    gap: 3em;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  .title-the {
+    font-size: 24px;
+  }
+
+  .title-weather {
+    font-size: 24px;
+  }
+
+  .title-app {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  .nav {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .menu {
+    gap: 3em;
+    justify-content: flex-end;
+  }
+
+  .temperature-conditions {
+    padding-top: 120px;
+    font-size: 75px;
+    place-items: center;
+    align-items: center;
     width: 100%;
+  }
+
+  .temperature {
+    font-size: 80px;
+    padding-top: 120px;
+    place-items: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Desktop text sizes */
+  #temp-display,
+  #conditions-display {
+    /* font-weight: bold; */
+    font-size: 80px;
+  }
+
+  .location-display {
+    font-size: 18px;
+    margin-top: 25px;
+  }
+
+  .unit-toggle-btn {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+
+  .temperature svg,
+  .temperature-conditions svg {
+    max-width: 450px;
+    width: auto;
+  }
+
+  .text-container {
+    width: 500px;
+  }
+
+  .search {
+    position: absolute;
+    top: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 100px;
+  }
+
+  .search-input {
+    font-size: 42px;
+    width: calc(100% - 90px);
+    top: 20px;
+    left: 20px;
+  }
+
+  .search-btn {
+    font-size: 12px;
+    top: 30px;
+    right: -10px;
+    padding: 7px 10px;
+  }
+
+  .blob-container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+  }
+
+  .yellow {
+    height: 300px;
+    width: 300px;
+    top: 250px;
+    left: 20%;
+    animation: yellow-desktop 8s infinite ease;
+  }
+
+  .blue {
+    height: 250px;
+    width: 250px;
+    top: 150px;
+    right: 15%;
+    left: auto;
+    animation: blue-desktop 15s infinite ease;
+  }
+
+  .red {
+    height: 250px;
+    width: 250px;
+    right: 25%;
+    top: 400px;
+    left: auto;
+    animation: red-desktop 12s infinite ease;
+  }
+
+  .green {
+    height: 300px;
+    width: 300px;
+    right: auto;
+    top: 350px;
+    left: 25%;
+    animation: green-desktop 10s infinite linear;
+  }
+
+  /* Desktop animations */
+  @keyframes green-desktop {
+    0% {
+      top: 350px;
+      left: 25%;
+      transform: scale(1.3);
+    }
+    30% {
+      top: 350px;
+      left: 15%;
+      transform: scale(1.2);
+    }
+    65% {
+      top: 200px;
+      left: 35%;
+      transform: scale(1.4);
+    }
+    100% {
+      top: 350px;
+      left: 25%;
+      transform: scale(1.3);
+    }
+  }
+
+  @keyframes yellow-desktop {
+    0% {
+      top: 250px;
+      left: 20%;
+      transform: scale(1.3);
+    }
+    30% {
+      top: 350px;
+      left: 30%;
+      transform: scale(1.2);
+    }
+    65% {
+      top: 150px;
+      left: 40%;
+      transform: scale(1.4);
+    }
+    100% {
+      top: 250px;
+      left: 20%;
+      transform: scale(1.3);
+    }
+  }
+
+  @keyframes blue-desktop {
+    0% {
+      top: 150px;
+      right: 15%;
+      transform: scale(1);
+    }
+    30% {
+      top: 100px;
+      right: 25%;
+      transform: scale(1.3);
+    }
+    65% {
+      top: 300px;
+      right: 35%;
+      transform: scale(1.4);
+    }
+    100% {
+      top: 150px;
+      right: 15%;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes red-desktop {
+    0% {
+      top: 400px;
+      right: 25%;
+      transform: scale(1);
+    }
+    30% {
+      top: 300px;
+      right: 35%;
+      transform: scale(1.4);
+    }
+    65% {
+      top: 400px;
+      right: 45%;
+      transform: scale(1.4);
+    }
+    100% {
+      top: 400px;
+      right: 25%;
+      transform: scale(1);
+    }
   }
 }

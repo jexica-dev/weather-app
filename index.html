@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -15,7 +15,11 @@
   <body>
     <!-- navbar -->
     <div class="nav">
-      <h2 class="title">The Weather App</h2>
+      <div class="title">
+        <div class="title-the">The</div>
+        <div class="title-weather">Weather</div>
+        <div class="title-app">App</div>
+      </div>
       <div class="menu">
         <p><a href="index.html">temperature</a></p>
         <p><a href="conditions.html">conditions</a></p>
@@ -31,35 +35,53 @@
 
     <!-- temperature -->
     <div class="temperature">
-      <!-- temperature -->
       <div class="text-container"></div>
 
-      <!-- https://css-tricks.com/snippets/svg/curved-text-along-path/ -->
-
-      <svg viewBox="0 -150 450 500">
+      <svg viewBox="0 -150 450 500" class="temp-label-svg">
         <path
           id="curve"
-          d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97"
+          fill="transparent"
+          d="M73.2,98.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97"
         />
         <text x="25">
-          <textPath xlink:href="#curve">80 degrees</textPath>
+          <textPath id="temp-display" xlink:href="#curve">temperature</textPath>
         </text>
       </svg>
+
+      <div id="weather-value-display" class="weather-value"></div>
+
+      <div class="location-display" id="location-display"></div>
+
+      <button
+        id="unit-toggle"
+        class="unit-toggle-btn"
+        onclick="toggleUnit()"
+        style="display: none"
+      >
+        Switch to °C / °F
+      </button>
     </div>
 
     <!-- search bar -->
 
-    <form action="" class="search space-mono-regular">
+    <form
+      class="search space-mono-regular"
+      onsubmit="
+        event.preventDefault();
+        getWeather();
+      "
+    >
       <div class="search-wrapper">
         <input
           type="text"
           name="search-input"
           class="search-input"
           id="search-input"
-          placeholder="CITY"
+          placeholder="ZIPCODE"
         />
-        <button onclick="getWeather()" class="search-btn">submit</button>
+        <button type="submit" class="search-btn">enter</button>
       </div>
     </form>
+    <script src="app.js"></script>
   </body>
 </html>

@@ -1,11 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@1,700,500,300,501,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet"
     />
     <title>The Weather App</title>
@@ -13,10 +15,18 @@
   <body>
     <!-- navbar -->
     <div class="nav">
-      <h2 class="title">The Weather App</h2>
+      <div class="title">
+        <div class="title-the">The</div>
+        <div class="title-weather">Weather</div>
+        <div class="title-app">App</div>
+      </div>
       <div class="menu">
         <p><a href="index.html">temperature</a></p>
-        <p><a href="conditions.html">conditions</a></p>
+        <p>
+          <a href="conditions.html" style="text-decoration: underline"
+            >conditions</a
+          >
+        </p>
       </div>
     </div>
     <!-- blobs -->
@@ -27,35 +37,57 @@
       <div class="blue blob"></div>
     </div>
 
-    <!-- conditions -->
-    <div class="temperature-conditions">
-      <!-- temperature -->
+    <!-- temperature -->
+    <div class="temperature">
       <div class="text-container"></div>
 
-      <svg viewBox="0 -20 400 500">
+      <svg viewBox="0 -150 450 500" class="temp-label-svg">
         <path
           id="curve"
-          d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145"
+          fill="transparent"
+          d="M73.2,98.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97"
         />
         <text x="25">
-          <textPath xlink:href="#curve">&nbsp; 80 degrees</textPath>
+          <textPath id="temp-label-path" xlink:href="#curve">
+            temperature
+          </textPath>
         </text>
       </svg>
+
+      <div id="weather-value-display" class="weather-value"></div>
+
+      <div class="location-display" id="location-display"></div>
+
+      <button
+        id="unit-toggle"
+        class="unit-toggle-btn"
+        style="display: none"
+        onclick="toggleUnit()"
+      >
+        Switch to °C / °F
+      </button>
     </div>
 
     <!-- search bar -->
 
-    <form action="" class="search space-mono-regular">
+    <form
+      class="search space-mono-regular"
+      onsubmit="
+        event.preventDefault();
+        getWeather();
+      "
+    >
       <div class="search-wrapper">
         <input
           type="text"
           name="search-input"
           class="search-input"
           id="search-input"
-          placeholder="CITY"
+          placeholder="ZIPCODE"
         />
-        <button onclick="getWeather()" class="search-btn">submit</button>
+        <button type="submit" class="search-btn">enter</button>
       </div>
     </form>
+    <script src="app.js"></script>
   </body>
 </html>
