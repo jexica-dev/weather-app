@@ -1,53 +1,52 @@
 const API_KEY = '312f4f9aed9218cba772b2f0f723a1b6';
-
 const isConditionsPage = window.location.pathname.includes('conditions.html');
-let currentUnit = 'F';
-let weatherState = null;
+let currentUnit = 'F',
+  weatherState = null;
 
 window.addEventListener('DOMContentLoaded', () => {
-  // Clear data on refresh
-  localStorage.removeItem('weatherData');
+  localStorage.removeItem('weatherData'); // Reset on refresh
   resetDisplay();
 
-  const searchInput = document.getElementById('search-input');
-  if (searchInput) {
-    searchInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        getWeather();
-      }
-    });
-  }
+  document.getElementById('search-input')?.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      getWeather();
+    }
+  });
 });
 
 async function getWeather() {
-  const zipcode = document.getElementById('search-input').value.trim();
-
-  if (!zipcode || zipcode.length !== 5 || isNaN(zipcode)) {
-    alert('Please enter a valid 5-digit US zipcode');
-    return;
-  }
+  const query = document.getElementById('search-input').value.trim();
+  if (!query) return alert('Enter a Zipcode or City');
 
   const valueDisplay = document.getElementById('weather-value-display');
-  if (valueDisplay) valueDisplay.textContent = '...';
-
-  const url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},US&appid=${API_KEY}&units=imperial`;
+  if (valueDisplay) {
+    valueDisplay.style.display = 'flex';
+    valueDisplay.textContent = '...';
+  }
 
   try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Zipcode not found');
-    const data = await response.json();
+    const param = /^\d{5}$/.test(query) ? `zip=${query},US` : `q=${query}`;
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?${param}&appid=${API_KEY}&units=imperial`;
+
+    const weatherRes = await fetch(weatherUrl);
+    if (!weatherRes.ok) throw new Error('Location not found');
+    const weatherData = await weatherRes.json();
+
+    const geoUrl = `https://api.openweathermap.org/geo/1.0/reverse?lat=${weatherData.coord.lat}&lon=${weatherData.coord.lon}&limit=1&appid=${API_KEY}`;
+    const geoRes = await fetch(geoUrl);
+    const geoData = await geoRes.json();
+    const geo = geoData[0];
 
     weatherState = {
-      city: data.name,
-      state: 'CA',
-      zipcode: zipcode,
-      temp: Math.round(data.main.temp),
-      description: data.weather[0].description,
-      main: data.weather[0].main,
+      city: geo?.name || weatherData.name,
+      state: geo?.state || '',
+      country: geo?.country || weatherData.sys.country,
+      temp: Math.round(weatherData.main.temp),
+      description: weatherData.weather[0].description,
+      main: weatherData.weather[0].main,
     };
 
-    // Save briefly so switching to conditions.html works
     localStorage.setItem('weatherData', JSON.stringify(weatherState));
     displayWeather(weatherState);
   } catch (error) {
@@ -59,13 +58,11 @@ async function getWeather() {
 function displayWeather(data) {
   if (!data) return;
 
-  // Fade the curve
-  const labelSvg = document.querySelector('.temp-label-svg');
-  if (labelSvg) labelSvg.classList.add('fade-out');
+  document.querySelector('.temp-label-svg')?.classList.add('fade-out');
 
-  // Show Temperature or Conditions
   const valueDisplay = document.getElementById('weather-value-display');
   if (valueDisplay) {
+    valueDisplay.style.display = 'flex';
     if (isConditionsPage) {
       valueDisplay.textContent = getConditionsDescription(
         data.main,
@@ -82,18 +79,16 @@ function displayWeather(data) {
     }
   }
 
-  // Show Location
   const locationDisplay = document.getElementById('location-display');
   if (locationDisplay) {
-    locationDisplay.textContent = `${data.city}, ${data.state}, USA`;
+    locationDisplay.textContent = [data.city, data.state, data.country]
+      .filter(Boolean)
+      .join(', ');
     locationDisplay.style.display = 'block';
   }
 
-  // Show Toggle Button (Temp page only)
   const toggleBtn = document.getElementById('unit-toggle');
-  if (toggleBtn) {
-    toggleBtn.style.display = isConditionsPage ? 'none' : 'block';
-  }
+  if (toggleBtn) toggleBtn.style.display = isConditionsPage ? 'none' : 'block';
 }
 
 function toggleUnit() {
@@ -102,21 +97,22 @@ function toggleUnit() {
 }
 
 function resetDisplay() {
-  const labelSvg = document.querySelector('.temp-label-svg');
-  if (labelSvg) labelSvg.classList.remove('fade-out');
+  document.querySelector('.temp-label-svg')?.classList.remove('fade-out');
+  const valDisp = document.getElementById('weather-value-display');
+  if (valDisp) valDisp.textContent = '';
 
-  const valueDisplay = document.getElementById('weather-value-display');
-  if (valueDisplay) valueDisplay.textContent = '';
+  const locDisp = document.getElementById('location-display');
+  if (locDisp) {
+    locDisp.textContent = '';
+    locDisp.style.display = 'none';
+  }
 
-  const locationDisplay = document.getElementById('location-display');
-  if (locationDisplay) locationDisplay.style.display = 'none';
-
-  const toggleBtn = document.getElementById('unit-toggle');
-  if (toggleBtn) toggleBtn.style.display = 'none';
+  const btn = document.getElementById('unit-toggle');
+  if (btn) btn.style.display = 'none';
 }
 
 function getConditionsDescription(main, description) {
-  const conditionsMap = {
+  const map = {
     Clear: 'Sunny with clear skies.',
     Clouds: 'Mostly cloudy skies.',
     Rain: 'Rainy conditions.',
@@ -127,7 +123,7 @@ function getConditionsDescription(main, description) {
     Fog: 'Heavy fog.',
   };
   return (
-    conditionsMap[main] ||
+    map[main] ||
     description.charAt(0).toUpperCase() + description.slice(1) + '.'
   );
 }

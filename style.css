@@ -343,6 +343,46 @@ text {
   line-height: 1.2;
 }
 
+/* Fading the curve */
+.temp-label-svg {
+  transition: opacity 0.5s ease;
+  width: 90%;
+  max-width: 450px;
+}
+
+.temp-label-svg.fade-out {
+  opacity: 0.15;
+}
+
+/* Positioning the Temperature/Conditions text */
+.weather-value {
+  font-family: 'PP Editorial', serif;
+  font-size: 100px; /* Big temperature number */
+  margin-top: -100px; /* Moves it up into the curve area */
+  text-align: center;
+  z-index: 10;
+  position: relative;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Specific styling for the conditions sentence */
+.conditions-text {
+  font-size: 28px;
+  margin-top: -60px;
+  max-width: 320px;
+  font-style: italic;
+}
+
+.location-display {
+  font-family: 'Space Mono', monospace;
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: center;
+}
+
 /* Mobile animations */
 @keyframes green-mobile {
   0% {

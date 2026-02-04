@@ -13,7 +13,6 @@
     <title>The Weather App</title>
   </head>
   <body>
-    <!-- navbar -->
     <div class="nav">
       <div class="title">
         <div class="title-the">The</div>
@@ -25,7 +24,7 @@
         <p><a href="conditions.html">conditions</a></p>
       </div>
     </div>
-    <!-- blobs -->
+
     <div class="blob-container">
       <div class="green blob"></div>
       <div class="yellow blob"></div>
@@ -33,10 +32,7 @@
       <div class="blue blob"></div>
     </div>
 
-    <!-- temperature -->
     <div class="temperature">
-      <div class="text-container"></div>
-
       <svg viewBox="0 -150 450 500" class="temp-label-svg">
         <path
           id="curve"
@@ -62,8 +58,6 @@
       </button>
     </div>
 
-    <!-- search bar -->
-
     <form
       class="search space-mono-regular"
       onsubmit="
@@ -74,9 +68,8 @@
       <div class="search-wrapper">
         <input
           type="text"
-          name="search-input"
-          class="search-input"
           id="search-input"
+          class="search-input"
           placeholder="ZIPCODE"
         />
         <button type="submit" class="search-btn">enter</button>
