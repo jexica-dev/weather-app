@@ -47,25 +47,15 @@ h2 {
 }
 
 .title {
+  position: fixed;
+  text-align: left;
+  width: 100%;
+  left: 25px;
+  top: 20px;
+  font-size: 25px;
   display: flex;
   flex-direction: column;
   line-height: 1.25em;
-}
-
-.title-the {
-  font-size: 15px;
-  /* font-style: italic; */
-  font-weight: normal;
-}
-
-.title-weather {
-  font-size: 15px;
-  font-weight: normal;
-}
-
-.title-app {
-  font-size: 15px;
-  font-weight: normal;
 }
 
 p {
@@ -101,9 +91,10 @@ a:hover {
 
 .menu {
   display: flex;
+  width: 100%;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: flex-end;
+
   gap: 2em;
   font-style: italic;
   z-index: 100;
@@ -463,16 +454,8 @@ text {
     padding: 0 5em;
   }
 
-  .title-the {
-    font-size: 22px;
-  }
-
-  .title-weather {
-    font-size: 22px;
-  }
-
-  .title-app {
-    font-size: 22px;
+  .title {
+    font-size: 50px;
   }
 
   .menu {
@@ -530,18 +513,8 @@ text {
   }
 
   .title {
-    line-height: 1.75em;
-  }
-  .title-the {
-    font-size: 24px;
-  }
-
-  .title-weather {
-    font-size: 24px;
-  }
-
-  .title-app {
-    font-size: 24px;
+    font-size: 50px;
+    /* line-height: 1.75em; */
   }
 
   p {
