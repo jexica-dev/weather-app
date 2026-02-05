@@ -32,6 +32,7 @@
       <div class="blue blob"></div>
     </div>
 
+    <!-- temperature -->
     <div class="temperature">
       <svg viewBox="0 -150 450 500" class="temp-label-svg">
         <path
@@ -45,17 +46,16 @@
       </svg>
 
       <div id="weather-value-display" class="weather-value"></div>
-
-      <div class="location-display" id="location-display"></div>
-
+      <!-- Unit toggle button -->
       <button
         id="unit-toggle"
         class="unit-toggle-btn"
         onclick="toggleUnit()"
         style="display: none"
       >
-        Switch to °C / °F
+        °C
       </button>
+      <div class="location-display" id="location-display"></div>
     </div>
 
     <form
@@ -72,7 +72,7 @@
           class="search-input"
           placeholder="ZIPCODE"
         />
-        <button type="submit" class="search-btn">enter</button>
+        <button type="submit" class="search-btn">submit</button>
       </div>
     </form>
     <script src="app.js"></script>

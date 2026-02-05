@@ -26,30 +26,6 @@
   font-style: italic;
 }
 
-.space-mono-regular {
-  font-family: 'Space Mono', monospace;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.space-mono-bold {
-  font-family: 'Space Mono', monospace;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.space-mono-regular-italic {
-  font-family: 'Space Mono', monospace;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.space-mono-bold-italic {
-  font-family: 'Space Mono', monospace;
-  font-weight: 700;
-  font-style: italic;
-}
-
 /* MOBILE FIRST STYLES - Base styles for mobile devices */
 body {
   height: 100vh;
@@ -73,22 +49,22 @@ h2 {
 .title {
   display: flex;
   flex-direction: column;
-  line-height: 0.9;
+  line-height: 1.25em;
 }
 
 .title-the {
-  font-size: 20px;
+  font-size: 15px;
   /* font-style: italic; */
   font-weight: normal;
 }
 
 .title-weather {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: normal;
 }
 
 .title-app {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: normal;
 }
 
@@ -110,10 +86,14 @@ a:hover {
 }
 
 .nav {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: flex-start; */
   width: 100%;
   gap: 1em;
   padding-top: 1em;
@@ -168,7 +148,7 @@ text {
 .location-display {
   font-family: 'Space Mono', monospace;
   font-size: 16px;
-  margin-top: 20px;
+  margin-top: -10px;
   text-align: center;
   font-weight: normal;
   font-style: normal;
@@ -176,19 +156,19 @@ text {
 }
 
 .unit-toggle-btn {
-  margin-top: 15px;
-  padding: 8px 16px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
+  opacity: 0.5;
+  width: 50%;
+  text-align: end;
+  margin-top: -25px;
+  margin-bottom: 10px;
+  z-index: 100;
   cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.unit-toggle-btn:hover {
-  background-color: rgba(255, 255, 255, 0.9);
+  display: inline;
+  font-family: 'Space Mono', monospace;
+  font-size: 24px;
+  pointer-events: auto;
+  border: none;
+  background-color: transparent;
 }
 
 .text-container {
@@ -197,6 +177,7 @@ text {
 }
 
 .search {
+  z-index: 10;
   position: absolute;
   top: 400px;
   left: 50%;
@@ -205,7 +186,7 @@ text {
   justify-content: space-around;
   place-items: center;
   margin: 0 auto;
-  width: 85%;
+  width: 60%;
   max-width: 320px;
   height: 80px;
   background-color: white;
@@ -242,7 +223,7 @@ text {
   padding: 6px 8px;
   position: absolute;
   top: 24px;
-  right: 5px;
+  right: -5px;
   border-radius: 15px;
   border: none;
   background-color: white;
@@ -327,14 +308,13 @@ text {
   opacity: 0.15; /* Makes the curve faint when weather shows */
 }
 
-/* Positions the big number/conditions text */
-.weather-value {
-  font-family: 'PP Editorial', serif;
+/* .weather-value {
+  font-family: 'Space Mono', monospace;
   font-size: 100px;
-  margin-top: -80px; /* Adjust this to move the number up/down */
+  margin-top: -100px; 
   z-index: 10;
   text-align: center;
-}
+} */
 
 /* Smaller font specifically for the conditions sentence */
 .conditions-text {
@@ -356,9 +336,10 @@ text {
 
 /* Positioning the Temperature/Conditions text */
 .weather-value {
-  font-family: 'PP Editorial', serif;
+  font-family: 'Space Mono', monospace;
+  font-style: normal;
   font-size: 100px; /* Big temperature number */
-  margin-top: -100px; /* Moves it up into the curve area */
+  margin-top: -255px; /* Moves it up into the curve area */
   text-align: center;
   z-index: 10;
   position: relative;
@@ -371,7 +352,7 @@ text {
 /* Specific styling for the conditions sentence */
 .conditions-text {
   font-size: 28px;
-  margin-top: -60px;
+  /* margin-top: -60px; */
   max-width: 320px;
   font-style: italic;
 }
@@ -379,7 +360,7 @@ text {
 .location-display {
   font-family: 'Space Mono', monospace;
   font-size: 16px;
-  margin-top: 10px;
+  margin-top: -10px;
   text-align: center;
 }
 
@@ -487,7 +468,7 @@ text {
   }
 
   .title-weather {
-    font-size: 30px;
+    font-size: 22px;
   }
 
   .title-app {
@@ -509,8 +490,16 @@ text {
     max-width: 400px;
   }
 
+  .weather-value {
+    margin-top: -350px;
+  }
+
+  .unit-toggle-btn {
+    width: 20%;
+  }
+
   .search {
-    top: 380px;
+    top: 400px;
     width: 280px;
     height: 90px;
   }
@@ -540,6 +529,9 @@ text {
     font-size: 32px;
   }
 
+  .title {
+    line-height: 1.75em;
+  }
   .title-the {
     font-size: 24px;
   }
@@ -583,6 +575,9 @@ text {
     width: 100%;
   }
 
+  .unit-toggle-btn:hover {
+    text-decoration: underline;
+  }
   /* Desktop text sizes */
   #temp-display,
   #conditions-display {
@@ -592,12 +587,11 @@ text {
 
   .location-display {
     font-size: 18px;
-    margin-top: 25px;
+    margin-top: -15px;
   }
 
-  .unit-toggle-btn {
-    font-size: 14px;
-    margin-top: 20px;
+  .weather-value {
+    margin-top: -350px;
   }
 
   .temperature svg,
@@ -608,6 +602,10 @@ text {
 
   .text-container {
     width: 500px;
+  }
+
+  .unit-toggle-btn {
+    width: 20%;
   }
 
   .search {

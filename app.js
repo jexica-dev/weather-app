@@ -89,11 +89,16 @@ function displayWeather(data) {
 
   const toggleBtn = document.getElementById('unit-toggle');
   if (toggleBtn) toggleBtn.style.display = isConditionsPage ? 'none' : 'block';
+
+  toggleBtn.textContent = currentUnit === 'F' ? '°C' : '°F';
 }
 
 function toggleUnit() {
   currentUnit = currentUnit === 'F' ? 'C' : 'F';
   if (weatherState) displayWeather(weatherState);
+
+  document.getElementById('unit-toggle').textContent =
+    currentUnit === 'F' ? '°C' : '°F';
 }
 
 function resetDisplay() {
